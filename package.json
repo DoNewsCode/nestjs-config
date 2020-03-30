@@ -6,13 +6,14 @@
   "license": "MIT",
   "main": "index.js",
   "scripts": {
-    "build": "rimraf -rf dist && tsc -p tsconfig.json",
+    "prebuild": "rimraf -rf dist",
+    "build": "tsc -p tsconfig.json",
     "lint": "eslint 'lib/**/*.ts' --fix",
     "prepublish:npm": "npm run build",
     "publish:npm": "npm publish --access public",
     "prepublish:next": "npm run build",
     "publish:next": "npm publish --access public --tag next",
-    "test:integration": "jest --config ./tests/jest-e2e.json --runInBand",
+    "test": "jest --config ./tests/jest-e2e.json --runInBand",
     "prerelease": "npm run build",
     "release": "release-it"
   },
@@ -23,31 +24,42 @@
   },
   "devDependencies": {
     "@hapi/joi": "^17.1.1",
-    "@nestjs/common": "^7.0.6",
-    "@nestjs/core": "^7.0.6",
-    "@nestjs/platform-express": "^7.0.6",
-    "@nestjs/testing": "^7.0.6",
+    "@nestjs/common": "^7.0.7",
+    "@nestjs/core": "^7.0.7",
+    "@nestjs/platform-express": "^7.0.7",
+    "@nestjs/testing": "^7.0.7",
     "@types/hapi__joi": "^16.0.12",
     "@types/jest": "^25.1.4",
     "@types/js-yaml": "^3.12.3",
     "@types/lodash.get": "^4.4.6",
-    "@types/node": "^12.12.31",
+    "@types/node": "^12.12.32",
     "@types/uuid": "^7.0.2",
     "@typescript-eslint/eslint-plugin": "^2.25.0",
     "@typescript-eslint/parser": "^2.25.0",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.1",
     "husky": "^4.2.3",
-    "jest": "^25.2.3",
+    "jest": "^25.2.4",
+    "lint-staged": "^10.0.10",
     "prettier": "^2.0.2 ",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
-    "ts-jest": "^25.2.1",
+    "ts-jest": "^25.3.0",
     "typescript": "^3.8.3"
+  },
+  "peerDependencies": {
+    "@nestjs/common": "^6.10.0 || ^7.0.0",
+    "reflect-metadata": "^0.1.12"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "prettier --write"
+    ]
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint &&npm run build -- --noEmit"
+      "pre-commit": "lint-staged && npm run test",
+      "pre-push": "npm run build -- --noEmit"
     }
   }
 }
