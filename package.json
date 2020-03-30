@@ -23,6 +23,8 @@
     "uuid": "^7.0.2"
   },
   "devDependencies": {
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-angular": "^8.3.4",
     "@hapi/joi": "^17.1.1",
     "@nestjs/common": "^7.0.7",
     "@nestjs/core": "^7.0.7",
@@ -58,6 +60,7 @@
   },
   "husky": {
     "hooks": {
+      "commit-msg": "commitlint -c .commitlintrc.json -E HUSKY_GIT_PARAMS",
       "pre-commit": "lint-staged && npm run test",
       "pre-push": "npm run build -- --noEmit"
     }
