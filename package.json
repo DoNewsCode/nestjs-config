@@ -1,6 +1,6 @@
 {
   "name": "@donews/nestjs-config",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Nest config module",
   "author": "toonew",
   "license": "MIT",
@@ -61,5 +61,9 @@
       "pre-commit": "lint-staged && npm run test",
       "pre-push": "npm run build -- --noEmit"
     }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DoNewsCode/nestjs-config"
   }
 }
