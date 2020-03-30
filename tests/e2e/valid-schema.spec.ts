@@ -6,7 +6,7 @@ import { Test } from '@nestjs/testing';
 import * as assert from 'assert';
 import { join } from 'path';
 import { AppModule } from '../src/app.module';
-import { ConfigService } from '../../lib/config.service';
+import { ConfigService } from '../../lib';
 
 describe('envFilePath test', () => {
   let app: INestApplication;

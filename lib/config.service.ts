@@ -18,15 +18,12 @@ export class ConfigService {
 
   /**
    * Get a configuration value (either custom configuration or process environment variable)
-   * based on property path (you can use dot notation to traverse nested object, e.g. "database.host").
    * It returns a default value if the key does not exist.
    * @param propertyPath
-   * @param defaultValue
    */
   get<T = any>(propertyPath: string): T | undefined;
   /**
    * Get a configuration value (either custom configuration or process environment variable)
-   * based on property path (you can use dot notation to traverse nested object, e.g. "database.host").
    * It returns a default value if the key does not exist.
    * @param propertyPath
    * @param defaultValue
@@ -34,13 +31,13 @@ export class ConfigService {
   get<T = any>(propertyPath: string, defaultValue: T): T;
   /**
    * Get a configuration value (either custom configuration or process environment variable)
-   * based on property path (you can use dot notation to traverse nested object, e.g. "database.host").
    * It returns a default value if the key does not exist.
    * @param propertyPath
    * @param defaultValue
    */
   get<T = any>(propertyPath: string, defaultValue?: T): T | undefined {
     const processValue = process.env?.[propertyPath];
+    // 这里其实应该去yargs取，暂时懒得改（这里有个限制,process.env只能传输字符串）
     if (!isUndefined(processValue)) {
       return (processValue as unknown) as T;
     }
