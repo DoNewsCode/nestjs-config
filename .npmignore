@@ -13,6 +13,7 @@ node_modules
 # source
 lib
 tests
+.commitlintrc.json
 .eslintignore
 .eslintrc.js
 .gitignore
