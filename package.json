@@ -64,7 +64,7 @@
     "hooks": {
       "commit-msg": "commitlint -c .commitlintrc.json -E HUSKY_GIT_PARAMS",
       "pre-commit": "lint-staged && npm run test",
-      "pre-push": "npm run build -- --noEmit"
+      "pre-push": "npm run build"
     }
   },
   "repository": {
