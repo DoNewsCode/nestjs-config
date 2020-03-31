@@ -1,11 +1,10 @@
 /**
  * Created by Rain on 2020/3/26
  */
+import * as Joi from '@hapi/joi';
 import { DynamicModule, Module } from '@nestjs/common';
 import { join } from 'path';
-import { ConfigService } from '../../lib/config.service';
-import { ConfigModule } from '../../lib/config.module';
-import * as Joi from '@hapi/joi';
+import { ConfigModule, ConfigService } from '../../lib';
 
 @Module({})
 export class AppModule {
