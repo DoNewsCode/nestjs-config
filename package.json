@@ -9,6 +9,7 @@
     "prebuild": "rimraf -rf dist",
     "build": "tsc -p tsconfig.json",
     "lint": "eslint 'lib/**/*.ts' --fix",
+    "format": "prettier --write \"lib/**/*.ts\" \"test/**/*.ts\"",
     "prepublish:npm": "npm run build",
     "publish:npm": "npm publish --access public",
     "prepublish:next": "npm run build",
