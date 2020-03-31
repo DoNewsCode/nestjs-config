@@ -1,6 +1,6 @@
 {
   "name": "@donews/nestjs-config",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Nest config module",
   "author": "toonew",
   "license": "MIT",
