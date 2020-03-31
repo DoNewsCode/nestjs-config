@@ -52,7 +52,7 @@ import { join } from 'path';
 export class AppModule {}
 ```
 
-2. ConfigModuleOptions 对应的值
+### 2. ConfigModuleOptions 对应的值
 
 ```typescript
 export interface ConfigModuleOptions {
@@ -79,7 +79,7 @@ export interface ConfigModuleOptions {
 }
 ```
 
-3. 使用
+### 3. 使用
 
 ```typescript
 import { ConfigService } from '@donews/nestjs-config';
