@@ -40,5 +40,19 @@ describe('envFilePath test', () => {
     const configService = app.get(ConfigService);
     assert.strictEqual(configService.get<string>('PORT'), 4000);
     assert.strictEqual(configService.get<string>('DATABASE_NAME'), 'test');
+    assert.strictEqual(configService.get<boolean>('FLAG_BOOLEAN'), true);
+
+    assert.deepStrictEqual(
+      configService.get<{ host: string; port: number }[]>('REDIS_CLUSTER_NODE'),
+      [
+        { host: '127.0.0.1', port: 7000 },
+        { host: '127.0.0.1', port: 7001 },
+      ],
+    );
+
+    assert.deepStrictEqual(
+      configService.get<{ name: string; age: number }>('PERSON'),
+      { name: 'toonewLi', age: 1000 },
+    );
   });
 });

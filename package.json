@@ -19,7 +19,7 @@
     "release": "release-it"
   },
   "dependencies": {
-    "js-yaml": "^3.13.1",
+    "js-yaml": "^4.0.0",
     "lodash.get": "^4.4.2"
   },
   "devDependencies": {
@@ -32,7 +32,7 @@
     "@nestjs/testing": "7.6.5",
     "@types/hapi__joi": "17.1.6",
     "@types/jest": "26.0.20",
-    "@types/js-yaml": "3.12.5",
+    "@types/js-yaml": "^4.0.0",
     "@types/lodash.get": "4.4.6",
     "@types/node": "12.12.34",
     "@typescript-eslint/eslint-plugin": "4.12.0",

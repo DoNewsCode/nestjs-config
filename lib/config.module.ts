@@ -4,7 +4,7 @@
 import { ValidationOptions } from '@hapi/joi';
 import { DynamicModule, FactoryProvider, Module } from '@nestjs/common';
 import * as fs from 'fs';
-import { safeLoad } from 'js-yaml';
+import { load } from 'js-yaml';
 import { ConfigModuleOptions } from './interfaces';
 import { ConfigService } from './config.service';
 import {
@@ -86,11 +86,11 @@ export class ConfigModule {
       ? options.envFilePath
       : [options.envFilePath || process.cwd() + '/config/default.yaml'];
 
-    let config: ReturnType<typeof safeLoad> = {};
+    let config: ReturnType<typeof load> = {};
     for (const envFilePath of envFilePaths) {
       if (fs.existsSync(envFilePath)) {
         config = Object.assign(
-          safeLoad(fs.readFileSync(envFilePath, { encoding: 'utf8' })),
+          load(fs.readFileSync(envFilePath, { encoding: 'utf8' })),
           config,
         );
       }
