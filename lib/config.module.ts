@@ -1,17 +1,19 @@
 /**
  * Created by Rain on 2020/3/25
  */
+import * as fs from 'fs';
+
 import { ValidationOptions } from '@hapi/joi';
 import { DynamicModule, FactoryProvider, Module } from '@nestjs/common';
-import * as fs from 'fs';
 import { load } from 'js-yaml';
-import { ConfigModuleOptions } from './interfaces';
-import { ConfigService } from './config.service';
+
 import {
   CONFIGURATION_TOKEN,
   VALIDATED_ENV_LOADER,
   VALIDATED_ENV_PROPNAME,
 } from './config.constants';
+import { ConfigService } from './config.service';
+import { ConfigModuleOptions } from './interfaces';
 
 @Module({
   providers: [
@@ -84,7 +86,7 @@ export class ConfigModule {
   private static loadConfigFile(options: ConfigModuleOptions) {
     const envFilePaths: string[] = Array.isArray(options.envFilePath)
       ? options.envFilePath
-      : [options.envFilePath || process.cwd() + '/config/default.yaml'];
+      : [options.envFilePath ?? process.cwd() + '/config/default.yaml'];
 
     let config: ReturnType<typeof load> = {};
     for (const envFilePath of envFilePaths) {

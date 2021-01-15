@@ -3,6 +3,7 @@
  */
 import { Inject, Injectable } from '@nestjs/common';
 import get from 'lodash.get';
+
 import { CONFIGURATION_TOKEN } from './config.constants';
 
 function isUndefined(value: any): boolean {
