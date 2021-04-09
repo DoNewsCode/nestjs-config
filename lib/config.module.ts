@@ -27,33 +27,30 @@ import { ConfigModuleOptions } from './interfaces';
 })
 export class ConfigModule {
   static forRoot(options: ConfigModuleOptions = {}): DynamicModule {
-    let validatedEnvConfig: Record<string, any> | undefined = undefined;
+    const { ignoreEnvFile, ignoreCheckEnvVars, validationSchema } = options;
 
-    // 忽略 配置文件
-    if (!options.ignoreEnvFile) {
-      // 是否有检查文档
-      if (options.validationSchema) {
-        // 加载配置文件
-        let config = this.loadConfigFile(options);
-        // 是否忽略process.env上的参数校验
-        if (!options.ignoreCheckEnvVars) {
-          config = {
-            ...process.env,
-            ...config,
-          };
-        }
-        const validationOptions = this.getSchemaValidationOptions(options);
-        const {
-          error,
-          value: validatedConfig,
-        } = options.validationSchema.validate(config, validationOptions);
+    let validatedEnvConfig: Record<string, any> | undefined = {};
 
-        if (error) {
-          throw new Error(`Config validation error: ${error.message}`);
-        }
-        validatedEnvConfig = validatedConfig;
-      } else {
-        validatedEnvConfig = this.loadConfigFile(options);
+    // 是否 忽略 配置文档
+    if (!ignoreEnvFile) {
+      validatedEnvConfig = this.loadConfigFile(options);
+    }
+
+    // 是否 忽略 环境变量
+    if (!ignoreCheckEnvVars) {
+      validatedEnvConfig = Object.assign({}, validatedEnvConfig, process.env);
+    }
+
+    // 是否 是用 validate 检测
+    if (validationSchema) {
+      const validationOptions = this.getSchemaValidationOptions(options);
+      const { error } = validationSchema.validate(
+        validatedEnvConfig,
+        validationOptions,
+      );
+
+      if (error) {
+        throw new Error(`Config validation error: ${error.message}`);
       }
     }
 

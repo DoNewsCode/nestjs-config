@@ -1,9 +1,11 @@
 /**
  * Created by Rain on 2020/3/26
  */
+import assert from 'assert';
+
 import { INestApplication } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
-import * as assert from 'assert';
+
 import { AppModule } from '../src/app.module';
 
 describe('envFilePath test', () => {
